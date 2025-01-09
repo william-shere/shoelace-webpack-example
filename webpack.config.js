@@ -23,7 +23,9 @@ module.exports = {
       patterns: [
         // Copy Shoelace assets to dist/shoelace
         {
-          from: path.resolve(__dirname, 'node_modules/@shoelace-style/shoelace/dist/assets'),
+          // relies on the asset folder being located in the same directory as "shoelace.js"
+          // resolving this way ensures the build will work with PnP resolvers such as Yarn
+          from: path.join(path.dirname(require.resolve('@shoelace-style/shoelace/dist/shoelace.js')), 'assets'),
           to: path.resolve(__dirname, 'dist/shoelace/assets')
         }
       ]
